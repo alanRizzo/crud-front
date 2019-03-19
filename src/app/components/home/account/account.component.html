@@ -1,0 +1,36 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngFor="let account of accounts; index as i">
+  <app-movement [accountId]=account.id></app-movement>
+  <h2>Account {{ i + 1 }}</h2>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let move of account.moves">
+          <td> {{ move.created | date:'medium' }} </td>
+          <td> {{ move.description }} </td>
+          <td> {{ move.amount | currency:AR }} </td>
+          <td><a href="#modal-edit" (click)="moveSelected(move)" data-toggle="modal" data-target="#modal-edit">
+                <i class="material-icons">edit_attributes</i>
+              </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>
+            <h5><strong>TOTAL:</strong> {{ account.balance.amount__sum | currency:AR }}</h5>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <br>
+  </div>
+</div>

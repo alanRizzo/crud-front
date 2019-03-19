@@ -1,0 +1,76 @@
+<!-- MODAL ADD -->
+<div *ngIf="!submitted" class="modal show" id="modal-add" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="form" [formGroup]="movementAddForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a new movement</h5>
+          <button type="reset" class="close" (click)="onAddCancel()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-8">
+              <input type="text" id="add-description" class="form-control" formControlName="add_description"
+                placeholder="Description">
+            </div>
+            <div class="col-sm-4">
+              <input type="number" id="add-amount" class="form-control" formControlName="add_amount"
+                placeholder="Amount">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="text-right">
+            <button [disabled]="!movementAddForm.valid" (click)="onAddSubmit()" data-dismiss="modal" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-secondary" (click)="onAddCancel()" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL EDIT -->
+<div class="modal" id="modal-edit" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="form" [formGroup]="movementEditForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit movement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-8">
+              <input type="text" id="edit-description" class="form-control" formControlName="edit_description"
+                value="{{ move.description }}" placeholder="Description">
+            </div>
+            <div class="col-sm-4">
+              <input type="number" id="edit_amount" class="form-control" formControlName="edit_amount"
+                value="{{ move.amount }}" placeholder="Amount">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="display: block;">
+          <div class="text-left">
+            <button (click)="onEditDelete()" data-dismiss="modal" class="float-left btn btn-primary">Delete</button>
+          </div>
+          <div class="text-right">
+            <button 
+              [disabled]="!movementEditForm.touched || !movementEditForm.dirty || !movementEditForm.valid" 
+              (click)="onEditSubmit()" 
+              data-dismiss="modal" 
+              class="btn btn-primary">Save changes
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="title">
+  <h2>Welcome {{ client.last_name | titlecase }}, {{ client.first_name | titlecase }}</h2>
+  <h5><strong>Phone number:</strong> {{ client.phone }}</h5>
+  <h5><strong>Email:</strong> {{ client.email }}</h5>
+</div>
