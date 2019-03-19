@@ -1,4 +1,11 @@
-# Fr
+## CRUD-front
+
+Application that serves client information, such a personal data and accounts data. 
+Allows creation, partial update (PATCH), and delete of movements.
+
+- The creation of the clients and the accounts are only allowed from the backend.
+- From the Angular App is possible to create movements for each account the client has.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.1.
 
@@ -25,4 +32,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# crud-front
