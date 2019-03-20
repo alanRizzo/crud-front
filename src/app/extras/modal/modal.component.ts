@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService
+    private homeService: HomeService,
   ) {
     this.homeService.currentAccount$.subscribe(x => (this.accountId = x));
     this.homeService.currentMove$.subscribe(x => (this.move = x));
@@ -50,7 +50,7 @@ export class ModalComponent implements OnInit {
       )
       .subscribe(
         data => {
-          // this.homeService.accounts();
+          this.homeService.refreshAccount.next(true);
           this.movementAddForm.reset();
         },
         error => {
@@ -79,7 +79,7 @@ export class ModalComponent implements OnInit {
       )
       .subscribe(
         data => {
-          console.log(data);
+          this.homeService.refreshAccount.next(true);
         },
         error => {
           //  this.alertService.error(error);
@@ -95,8 +95,7 @@ export class ModalComponent implements OnInit {
   onEditDelete() {
     this.homeService.deleteMovement(this.move.id).subscribe(
       data => {
-        this.ngOnInit();
-        console.log(data);
+        this.homeService.refreshAccount.next(true);
       },
       error => {
         //  this.alertService.error(error);

@@ -62,7 +62,7 @@
           </div>
           <div class="text-right">
             <button 
-              [disabled]="!movementEditForm.touched || !movementEditForm.dirty || !movementEditForm.valid" 
+              [disabled]="!movementEditForm.valid" 
               (click)="onEditSubmit()" 
               data-dismiss="modal" 
               class="btn btn-primary">Save changes

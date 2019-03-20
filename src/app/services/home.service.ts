@@ -12,6 +12,8 @@ import { Move } from '../models/move';
 export class HomeService {
   API_URL = 'http://localhost:8000/api/';
 
+  public refreshAccount: BehaviorSubject<boolean>;
+  public refreshAccount$: Observable<boolean>;
   private currentAccount: ReplaySubject<number>;
   public currentAccount$: Observable<number>;
   private currentMove: BehaviorSubject<Move>;
@@ -19,10 +21,14 @@ export class HomeService {
   private httpOptions: any;
   private user: User;
 
+
+
   constructor(
     private http: HttpClient,
     authenticationService: AuthenticationService
   ) {
+    this.refreshAccount = new BehaviorSubject<boolean>(false);
+    this.refreshAccount$ = this.refreshAccount.asObservable();
     this.currentAccount = new ReplaySubject<number>();
     this.currentAccount$ = this.currentAccount.asObservable();
     this.currentMove = new BehaviorSubject<Move>({
@@ -54,10 +60,7 @@ export class HomeService {
   }
 
   client() {
-    return this.http.get(
-      `${this.API_URL}clients/${this.user.id}/`,
-      this.httpOptions
-    );
+    return this.http.get(`${this.API_URL}clients/${this.user.id}/`, this.httpOptions);
   }
 
   addMovement(description: string, account: number, amount: number) {
